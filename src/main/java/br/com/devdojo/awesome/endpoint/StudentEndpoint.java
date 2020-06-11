@@ -31,7 +31,7 @@ public class StudentEndpoint {
         List<Student> studentList = asList(new Student("Kim Namjoon"),
                 new Student("Kim Seokjin")
         );
-        System.out.println("Data e hora da response: " + dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
+//        System.out.println("Data e hora da response: " + dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
         return studentList;
     }
 
