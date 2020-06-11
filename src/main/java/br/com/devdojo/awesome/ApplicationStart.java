@@ -1,7 +1,8 @@
-package br.com.devdojo.awesome.starter;
+package br.com.devdojo.awesome;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
@@ -11,8 +12,15 @@ import org.springframework.context.annotation.ComponentScan;
  * ? quem se encarrega de fazer isso.
  */
 
-@EnableAutoConfiguration
-@ComponentScan(basePackages = "br.com.devdojo.awesome.endpoint")
+/**
+ * ! Starter retirado do seu próprio pacote e colocado
+ * ! no pacote geral (awesome) para que pudesse abranger
+ * ! todas as outras classes. Isso anula a necessidade
+ * ! do base package.
+ */
+
+
+@SpringBootApplication
 public class ApplicationStart {
     public static void main(String[] args) {
         SpringApplication.run(ApplicationStart.class, args);
