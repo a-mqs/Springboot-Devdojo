@@ -1,7 +1,7 @@
 package br.com.devdojo.error;
 
 /**
- * Classe usada para a descrição de erros nos retornos
+ * Classe básica usada para a descrição de erros nos retornos
  * dos métodos do endpoint. Geralmente acompanha um
  * status code.
  */
