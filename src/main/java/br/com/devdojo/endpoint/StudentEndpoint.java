@@ -27,7 +27,6 @@ public class StudentEndpoint {
 
     @RequestMapping(method = RequestMethod.GET, path = "/list")
     public ResponseEntity<?> listAll(){
-        System.out.println("Data e hora da request: " + dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
         return new ResponseEntity<>(Student.studentList, HttpStatus.OK);
     }
 
@@ -45,6 +44,19 @@ public class StudentEndpoint {
     public ResponseEntity<?> save(@RequestBody Student student){
         Student.studentList.add(student);
         return new ResponseEntity<>(student, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseEntity<?> delete(@RequestBody Student student){
+        Student.studentList.remove(student);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<?> update(@RequestBody Student student){
+        Student.studentList.remove(student);
+        Student.studentList.add(student);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
