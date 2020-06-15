@@ -1,15 +1,13 @@
 package br.com.devdojo.endpoint;
 
-import br.com.devdojo.error.CustomErrorType;
 import br.com.devdojo.error.ResourceNotFoundException;
 import br.com.devdojo.model.Student;
 import br.com.devdojo.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 /**
  * Classe que define o ponto final até onde essa aplicação
@@ -45,6 +43,7 @@ public class StudentEndpoint {
     }
 
     @PostMapping
+    @Transactional(rollbackFor = Exception.class)
     public ResponseEntity<?> save(@RequestBody Student student){
         return new ResponseEntity<>(studentDAO.save(student), HttpStatus.CREATED);
     }
