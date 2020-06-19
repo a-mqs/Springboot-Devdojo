@@ -5,13 +5,8 @@ package br.com.devdojo.error;
  * os campos que o desenvolvedor quiser
  */
 
-public class ResourceNotFoundDetails {
-    private String title;
-    private int status;
-    private String detail;
-    private long timestamp;
-    private String developerMessage;
-
+public class ResourceNotFoundDetails extends ErrorDetail{
+    
     public ResourceNotFoundDetails() {
     }
 
@@ -56,34 +51,15 @@ public class ResourceNotFoundDetails {
 
         public ResourceNotFoundDetails build() {
             ResourceNotFoundDetails resourceNotFoundDetails = new ResourceNotFoundDetails();
-            resourceNotFoundDetails.detail = this.detail;
-            resourceNotFoundDetails.developerMessage = this.developerMessage;
-            resourceNotFoundDetails.status = this.status;
-            resourceNotFoundDetails.title = this.title;
-            resourceNotFoundDetails.timestamp = this.timestamp;
+            resourceNotFoundDetails.setDetail(detail);
+            resourceNotFoundDetails.setDeveloperMessage(developerMessage);
+            resourceNotFoundDetails.setStatus(status);
+            resourceNotFoundDetails.setTitle(title);
+            resourceNotFoundDetails.setTimestamp(timestamp);
             return resourceNotFoundDetails;
         }
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public String getDetail() {
-        return detail;
-    }
-
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public String getDeveloperMessage() {
-        return developerMessage;
-    }
 
 
 }

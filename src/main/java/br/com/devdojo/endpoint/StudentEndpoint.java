@@ -9,11 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * Classe que define o ponto final até onde essa aplicação
  * (ou uma outra API) é acessada, nela contém os principais
  * métodos HTTP para acesso dos recursos.
  */
+
 
 @RestController
 @RequestMapping("students")
@@ -44,7 +47,7 @@ public class StudentEndpoint {
 
     @PostMapping
     @Transactional(rollbackFor = Exception.class)
-    public ResponseEntity<?> save(@RequestBody Student student){
+    public ResponseEntity<?> save(@Valid @RequestBody Student student){
         return new ResponseEntity<>(studentDAO.save(student), HttpStatus.CREATED);
     }
 
