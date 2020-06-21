@@ -5,7 +5,7 @@ package br.com.devdojo.error;
  * os campos que o desenvolvedor quiser
  */
 
-public class ResourceNotFoundDetails extends ErrorDetail{
+public class ResourceNotFoundDetails extends ErrorDetails {
     
     public ResourceNotFoundDetails() {
     }
