@@ -1,5 +1,6 @@
 package br.com.devdojo.javaclient;
 
+import br.com.devdojo.model.PageableResponse;
 import br.com.devdojo.model.Student;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.ParameterizedTypeReference;
@@ -23,12 +24,16 @@ public class JavaSpringClientTest {
         ResponseEntity<Student> forEntity = restTemplate.getForEntity("/{id}", Student.class, 23);
         System.out.println(forEntity.getBody());
 
-        Student[] students = restTemplate.getForObject("/", Student[].class);
-        System.out.println(Arrays.toString(students));
+//        Student[] students = restTemplate.getForObject("/", Student[].class);
+//        System.out.println(Arrays.toString(students));
+//
+//        ResponseEntity<List<Student>> exchange = restTemplate.exchange("/", HttpMethod.GET, null,
+//                new ParameterizedTypeReference<List<Student>>() {});
+//        System.out.println(exchange.getBody());
 
-        ResponseEntity<List<Student>> exchange = restTemplate.exchange("/", HttpMethod.GET, null,
-                new ParameterizedTypeReference<List<Student>>() {});
-        System.out.println(exchange.getBody());
+        ResponseEntity<PageableResponse<Student>> exchange = restTemplate.exchange("/", HttpMethod.GET,
+                null, new ParameterizedTypeReference<PageableResponse<Student>>(){});
 
+        System.out.println(exchange);
     }
 }
