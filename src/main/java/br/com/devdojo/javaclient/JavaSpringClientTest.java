@@ -1,39 +1,19 @@
 package br.com.devdojo.javaclient;
 
-import br.com.devdojo.model.PageableResponse;
 import br.com.devdojo.model.Student;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class JavaSpringClientTest {
     public static void main(String[] args) {
-        RestTemplate restTemplate = new RestTemplateBuilder()
-                .rootUri("http://localhost:8080/v3/protected/students")
-                .basicAuthentication("hongjoong", "devdojo")
-                .build();
 
-        Student student = restTemplate.getForObject("/{id}", Student.class, 23);
-        System.out.println(student);
+        Student studentPost = new Student();
+        studentPost.setName("Min Yoongi");
+        studentPost.setEmail("min.yoongi4@bighit.com");
+        JavaClientDAO dao = new JavaClientDAO();
+//        System.out.println(dao.findById(1));
+//        System.out.println(dao.listAll());
+        System.out.println(dao.save(studentPost));
 
-        ResponseEntity<Student> forEntity = restTemplate.getForEntity("/{id}", Student.class, 23);
-        System.out.println(forEntity.getBody());
-
-//        Student[] students = restTemplate.getForObject("/", Student[].class);
-//        System.out.println(Arrays.toString(students));
-//
-//        ResponseEntity<List<Student>> exchange = restTemplate.exchange("/", HttpMethod.GET, null,
-//                new ParameterizedTypeReference<List<Student>>() {});
-//        System.out.println(exchange.getBody());
-
-        ResponseEntity<PageableResponse<Student>> exchange = restTemplate.exchange("/", HttpMethod.GET,
-                null, new ParameterizedTypeReference<PageableResponse<Student>>(){});
-
-        System.out.println(exchange);
     }
 }
