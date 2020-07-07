@@ -3,15 +3,22 @@ package br.com.devdojo.model;
 import javax.persistence.Entity;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Student extends AbstractEntity{
-    @NotEmpty
+    @NotEmpty(message = "O campo nome do estudante é obrigatório")
     private String name;
-    @Email
-    @NotEmpty
+    @Email(message = "O email deve ser válido")
+    @NotEmpty(message = "O campo email é obrigatório")
     private String email;
+
+    public Student() {
+    }
+
+    public Student(@NotEmpty String name, @Email @NotEmpty String email) {
+        this.name = name;
+        this.email = email;
+    }
 
     @Override
     public String toString() {
