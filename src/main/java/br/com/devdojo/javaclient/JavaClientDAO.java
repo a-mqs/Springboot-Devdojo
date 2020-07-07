@@ -1,5 +1,6 @@
 package br.com.devdojo.javaclient;
 
+import br.com.devdojo.handler.RestResponseExceptHandler;
 import br.com.devdojo.model.PageableResponse;
 import br.com.devdojo.model.Student;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -13,11 +14,13 @@ public class JavaClientDAO {
     RestTemplate restTemplate = new RestTemplateBuilder()
             .rootUri("http://localhost:8080/v3/protected/students")
             .basicAuthentication("hongjoong", "devdojo")
+            .errorHandler(new RestResponseExceptHandler())
             .build();
 
     RestTemplate restTemplateAdmin = new RestTemplateBuilder()
             .rootUri("http://localhost:8080/v3/admin/students")
             .basicAuthentication("hongjoong", "devdojo")
+            .errorHandler(new RestResponseExceptHandler())
             .build();
 
     public Student findById(long id){
@@ -35,6 +38,14 @@ public class JavaClientDAO {
         ResponseEntity<Student> exchangePost = restTemplateAdmin.exchange("/", HttpMethod.POST,
                 new HttpEntity<>(student, createJSONHeader()), Student.class);
         return exchangePost.getBody();
+    }
+    
+    public void update(Student student){
+        restTemplateAdmin.put("/", student);
+    }
+
+    public void delete(Long id){
+        restTemplateAdmin.delete("/{id}", id);
     }
 
     private static HttpHeaders createJSONHeader(){
