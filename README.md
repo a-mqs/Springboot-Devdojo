@@ -1,5 +1,3 @@
-O seguinte readme poderia agradar recrutadores pra uma vaga de estagio?
-
  Aprendizado de Spring Boot
 
 Este repositório foi criado para documentar meu progresso como estudante de Java ao aprender o framework Spring Boot. Após adquirir conhecimentos importantes em Java, decidi me aprofundar no desenvolvimento de aplicações web usando este framework popular.
